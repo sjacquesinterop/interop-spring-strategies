@@ -1,0 +1,6 @@
+ca/gc/samplestrategiesspring/service/SampleStrategiesSpringService.java
+ ca.gc.samplestrategiesspring.service.SampleStrategiesSpringService
+ca/gc/samplestrategiesspring/controller/SampleStrategiesSpringController.java
+ ca.gc.samplestrategiesspring.controller.SampleStrategiesSpringController
+ca/gc/samplestrategiesspring/SampleStrategiesSpringApplication.java
+ ca.gc.samplestrategiesspring.SampleStrategiesSpringApplication
