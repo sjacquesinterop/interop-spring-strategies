@@ -6,15 +6,15 @@ import org.springframework.stereotype.Service;
 public class SampleStrategiesSpringService {
 
     public String sampleGet() {
-        return "Hello from GET!";
+        return "Hello from Spring GET";
     }
 
     public String samplePost() {
-        return "Hello from POST!";
+        return "Hello from Spring POST";
     }
 
     public String samplePut() {
-        return "Hello from PUT!";
+        return "Hello from Spring PUT";
     }
 
     public void sampleDelete() {
