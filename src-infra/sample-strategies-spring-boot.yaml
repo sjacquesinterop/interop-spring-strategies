@@ -1,0 +1,129 @@
+apiVersion: v1
+kind: List
+metadata: {}
+items:
+#  - apiVersion: v1
+#    kind: ConfigMap
+#    metadata:
+#      name: benefit-app-properties
+#    data:
+#      solace.message.host: 'http://engapim-gateway.dev.service.gc.ca/solace-master-demo'
+#      solace.message.vpn: 'default'
+#      solace.message.method: 'TOPIC'
+#      solace.message.topic.name: 'edsc/interop/green/poc'
+#      solace.message.queue.name: 'queue-poc-dev'
+#      solace.message.client.username: 'user-dev'
+#      solace.message.client.password: 'interop'
+
+  - apiVersion: image.openshift.io/v1
+    kind: ImageStream
+    metadata:
+      name: sample-strategies-spring-boot
+
+  - apiVersion: build.openshift.io/v1
+    kind: BuildConfig
+    metadata:
+      name: sample-strategies-spring-boot
+    spec:
+      output:
+        to:
+          kind: ImageStreamTag
+          name: 'sample-strategies-spring-boot:latest'
+      runPolicy: Serial
+      source:
+        type: Git
+        git:
+          uri: 'https://VP-BD@dev.azure.com/VP-BD/Versement-des-prestations-Benefits-Delivery/_git/interop-spring-strategy'
+          ref: branch_name
+        sourceSecret:
+          name: repo-at-azure
+      strategy:
+        dockerStrategy:
+        type: Docker
+      triggers:
+        - type: ImageChange
+        - type: ConfigChange
+
+  - apiVersion: apps.openshift.io/v1
+    kind: DeploymentConfig
+    metadata:
+      name: sample-strategies-spring-boot
+    spec:
+      template:
+        metadata:
+          labels:
+            name: sample-strategies-spring-boot
+        spec:
+          containers:
+            - name: sample-strategies-spring-boot
+              image: sample-strategies-spring-boot:latest
+              ports:
+                - containerPort: 8080
+                  protocol: TCP
+#              env:
+#                - name: solace.message.host
+#                  valueFrom:
+#                    configMapKeyRef:
+#                      name: benefit-app-properties
+#                      key: solace.message.host
+#                - name: solace.message.vpn
+#                  valueFrom:
+#                    configMapKeyRef:
+#                      name: benefit-app-properties
+#                      key: solace.message.vpn
+#                - name: solace.message.method
+#                  valueFrom:
+#                    configMapKeyRef:
+#                      name: benefit-app-properties
+#                      key: solace.message.method
+#                - name: solace.message.topic.name
+#                  valueFrom:
+#                    configMapKeyRef:
+#                      name: benefit-app-properties
+#                      key: solace.message.topic.name
+#                - name: solace.message.queue.name
+#                  valueFrom:
+#                    configMapKeyRef:
+#                      name: benefit-app-properties
+#                      key: solace.message.queue.name
+#                - name: solace.message.client.username
+#                  valueFrom:
+#                    configMapKeyRef:
+#                      name: benefit-app-properties
+#                      key: solace.message.client.username
+#                - name: solace.message.client.password
+#                  valueFrom:
+#                    configMapKeyRef:
+#                      name: benefit-app-properties
+#                      key: solace.message.client.password
+          restartPolicy: Always
+      replicas: 1
+      triggers:
+        - type: ConfigChange
+        - type: imageChange
+          imageChangeParams:
+            automatic: true
+            containerNames:
+              - sample-strategies-spring-boot
+            from:
+              kind: ImageStreamTag
+              name: sample-strategies-spring-boot:latest
+      strategy:
+        type: Rolling
+
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: sample-strategies-spring-boot
+      annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: 'true'
+    spec:
+      selector:
+        deploymentconfig: sample-strategies-spring-boot
+      ports:
+        - name: 8080-tcp
+          port: 8080
+          protocol: TCP
+          targetPort: 8080
+      type: LoadBalancer
+
