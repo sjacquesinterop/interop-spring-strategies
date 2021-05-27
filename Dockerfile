@@ -10,7 +10,7 @@ RUN mvn -f /home/app/pom.xml clean package
 FROM openjdk:11-jre-slim
 
 # run with user 1001 and be prepared for be running in OpenShift too
-RUN adduser --ingroup root --no-create-home --disabled-password 1001
+RUN adduser --ingroup root --no-create-home --disabled-password --force-badname 1001
 RUN chown -R 1001 /usr/local/lib
 RUN chmod -R "g+rwX" /usr/local/lib
 RUN chown -R 1001:root /usr/local/lib
