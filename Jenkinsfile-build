@@ -1,0 +1,30 @@
+def buildConfigName = "sample-strategies-spring-boot"
+
+pipeline {
+	agent any
+	stages {
+		stage('preamble') {
+			steps{
+				script {
+                			openshift.withCluster() {
+                    			openshift.withProject("${params.project_name}") {
+                        		echo "Using project: ${openshift.project()}"
+                    	        }
+                            }
+                }
+			}
+		}
+		stage('deploy') {
+        			steps{
+        				script {
+                        			openshift.withCluster() {
+                            			openshift.withProject("${params.project_name}") {
+                                		    echo "Starting the build"
+                                		    openshift.startBuild(buildConfigName);
+                            	        }
+                                    }
+                        }
+        			}
+        		}
+	}
+ }
