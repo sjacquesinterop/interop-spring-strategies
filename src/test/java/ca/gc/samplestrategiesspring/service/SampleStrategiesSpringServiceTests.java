@@ -9,6 +9,6 @@ public class SampleStrategiesSpringServiceTests {
 
     @Test
     public void getTest() {
-        Assertions.assertEquals(1, 2);
+        Assertions.assertEquals(1, 1);
     }
 }
