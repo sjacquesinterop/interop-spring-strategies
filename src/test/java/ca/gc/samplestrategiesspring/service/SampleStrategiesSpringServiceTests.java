@@ -11,11 +11,11 @@ public class SampleStrategiesSpringServiceTests {
     @Autowired
     SampleStrategiesSpringService sampleStrategiesSpringService;
 
-    @Test
-    public void getTest() {
-        Assertions.assertEquals("Hello from Spring GET",
-                sampleStrategiesSpringService.sampleGet());
-    }
+//    @Test
+//    public void getTest() {
+//        Assertions.assertEquals("Hello from Spring GET",
+//                sampleStrategiesSpringService.sampleGet());
+//    }
 //
 //    @Test
 //    public void postTest() {
@@ -28,9 +28,9 @@ public class SampleStrategiesSpringServiceTests {
 //        Assertions.assertEquals("Hello from Spring PUT",
 //                sampleStrategiesSpringService.samplePut());
 //    }
-//
-//    @Test
-//    public void deleteTest() {
-//        sampleStrategiesSpringService.sampleDelete();
-//    }
+
+    @Test
+    public void deleteTest() {
+        sampleStrategiesSpringService.sampleDelete();
+    }
 }
