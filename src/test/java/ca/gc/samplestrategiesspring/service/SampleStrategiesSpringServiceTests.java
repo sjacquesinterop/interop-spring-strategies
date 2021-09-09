@@ -16,21 +16,21 @@ public class SampleStrategiesSpringServiceTests {
         Assertions.assertEquals("Hello from Spring GET",
                 sampleStrategiesSpringService.sampleGet());
     }
-
-    @Test
-    public void postTest() {
-        Assertions.assertEquals("Hello from Spring POST",
-                sampleStrategiesSpringService.samplePost());
-    }
-
-    @Test
-    public void putTest() {
-        Assertions.assertEquals("Hello from Spring PUT",
-                sampleStrategiesSpringService.samplePut());
-    }
-
-    @Test
-    public void deleteTest() {
-        sampleStrategiesSpringService.sampleDelete();
-    }
+//
+//    @Test
+//    public void postTest() {
+//        Assertions.assertEquals("Hello from Spring POST",
+//                sampleStrategiesSpringService.samplePost());
+//    }
+//
+//    @Test
+//    public void putTest() {
+//        Assertions.assertEquals("Hello from Spring PUT",
+//                sampleStrategiesSpringService.samplePut());
+//    }
+//
+//    @Test
+//    public void deleteTest() {
+//        sampleStrategiesSpringService.sampleDelete();
+//    }
 }
