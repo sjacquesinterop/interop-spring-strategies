@@ -23,6 +23,12 @@ steps:
     mavenAuthenticateFeed: false
     effectivePomSkip: false
     sonarQubeRunAnalysis: false
+- task: BuildQualityChecks@8
+  inputs:
+    checkCoverage: true
+    coverageFailOption: 'build'
+    coverageType: 'lines'
+    coveragePrecision: '60'
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'JaCoCo'
