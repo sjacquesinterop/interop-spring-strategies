@@ -23,14 +23,14 @@ public class SampleStrategiesSpringServiceTests {
                 sampleStrategiesSpringService.samplePost());
     }
 
-    @Test
-    public void putTest() {
-        Assertions.assertEquals("Hello from Spring PUT",
-                sampleStrategiesSpringService.samplePut());
-    }
-
-    @Test
-    public void deleteTest() {
-        sampleStrategiesSpringService.sampleDelete();
-    }
+//    @Test
+//    public void putTest() {
+//        Assertions.assertEquals("Hello from Spring PUT",
+//                sampleStrategiesSpringService.samplePut());
+//    }
+//
+//    @Test
+//    public void deleteTest() {
+//        sampleStrategiesSpringService.sampleDelete();
+//    }
 }
