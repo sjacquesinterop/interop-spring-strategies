@@ -26,9 +26,9 @@ steps:
 - task: BuildQualityChecks@8
   inputs:
     checkCoverage: true
-    coverageFailOption: 'build'
+    coverageFailOption: 'fixed'
     coverageType: 'lines'
-    coveragePrecision: '60'
+    coverageThreshold: '40'
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'JaCoCo'
