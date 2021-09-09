@@ -27,4 +27,4 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: 'JaCoCo'
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/**/*'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/CCReport*/jacoco.xml'
