@@ -1,0 +1,9 @@
+trigger:
+  branches:
+    include:
+      - hotfixes/*
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
