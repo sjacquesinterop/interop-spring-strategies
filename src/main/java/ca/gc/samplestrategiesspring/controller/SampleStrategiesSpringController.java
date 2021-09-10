@@ -6,13 +6,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * The Sample strategies spring controller.
+ */
 @RestController
 @RequestMapping("spring")
 public class SampleStrategiesSpringController {
 
     @Autowired
-    SampleStrategiesSpringService sampleStrategiesSpringService;
+    private SampleStrategiesSpringService sampleStrategiesSpringService;
 
+    /**
+     * Sample GET request.
+     *
+     * @return the GET response entity
+     */
     @GetMapping("/")
     public ResponseEntity<String> sampleGet() {
         return new ResponseEntity<>(
@@ -21,6 +29,11 @@ public class SampleStrategiesSpringController {
         );
     }
 
+    /**
+     * Sample POST request.
+     *
+     * @return the POST response entity
+     */
     @PostMapping("/")
     public ResponseEntity<String> samplePost() {
         return new ResponseEntity<>(
@@ -29,6 +42,11 @@ public class SampleStrategiesSpringController {
         );
     }
 
+    /**
+     * Sample PUT request.
+     *
+     * @return the PUT response entity
+     */
     @PutMapping("/")
     public ResponseEntity<String> samplePut() {
         return new ResponseEntity<>(
@@ -37,6 +55,11 @@ public class SampleStrategiesSpringController {
         );
     }
 
+    /**
+     * Sample DELETE request.
+     *
+     * @return the DELETE response entity
+     */
     @DeleteMapping("/")
     public ResponseEntity<Void> sampleDelete() {
         sampleStrategiesSpringService.sampleDelete();
